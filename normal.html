@@ -114,6 +114,21 @@
     currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
     images[currentImageIndex].style.display = 'block';
   }
+
+  function editItem(event, element) {
+    event.preventDefault(); 
+    event.stopPropagation(); 
+    const textElement = element.previousElementSibling;
+    currentEditElement = textElement;
+    document.getElementById('editTextArea').value = textElement.textContent;
+    $('#editModal').modal('show');
+  }
+
+  function saveChanges() {
+    const newText = document.getElementById('editTextArea').value;
+    currentEditElement.textContent = newText;
+    $('#editModal').modal('hide');
+  }
 </script>
 
 </body>
