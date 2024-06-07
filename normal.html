@@ -66,22 +66,32 @@
 </div><br>
 
 <div class="container">
-  <h1 class="text-center"><b>Normal Skin Skincare Routine</b></h1><br>
+  <h1 class="text-center"><b>Normal Skin Skincare Routine</h1></b><br>
   <div class="skincare-routine"><br>
     <h3>Day:</h3>
-    <p><span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span><span class="routine-description">1. Wash your face with a gentle cleanser to remove dirt, oil, and sweat.</span></p>
-    <p><span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span><span class="routine-description">2. Apply a toner to remove any leftover impurities and prep your skin for the next steps.</span></p>
-    <p><span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span><span class="routine-description">3. Apply a serum to target specific concerns, such as wrinkles or uneven skin tone.</span></p>
-    <p><span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span><span class="routine-description">4. Apply a moisturizer to hydrate your skin and protect it from the elements.</span></p>
-    <p><span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span><span class="routine-description">5. Apply sunscreen with SPF 30 or higher to protect your skin from sun damage.</span></p>
-    <br>
+    <p>
+      1. Wash your face with a gentle cleanser to remove dirt, oil, and sweat.
+      <br>
+      2. Apply a toner to remove any leftover impurities and prep your skin for the next steps.
+      <br>
+      3. Apply a serum to target specific concerns, such as wrinkles or uneven skin tone.
+      <br>
+      4. Apply a moisturizer to hydrate your skin and protect it from the elements.
+      <br>
+      5. Apply sunscreen with SPF 30 or higher to protect your skin from sun damage.
+    </p><br>
     <h3>Night:</h3>
     <p>
-    <p><span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span><span class="routine-description">1. Use a makeup remover to remove all traces of makeup.</span></p>
-    <p><span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span><span class="routine-description">2. Wash your face with a gentle cleanser to remove dirt, oil, and sweat.</span></p>
-    <p><span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span><span class="routine-description">3. Apply a toner to remove any leftover impurities and prep your skin for the next steps.</span></p>
-    <p><span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span><span class="routine-description">4. Apply a serum to target specific concerns, such as wrinkles or uneven skin tone.</span></p>
-    <p><span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span><span class="routine-description">5. Apply a night cream to hydrate your skin and help it repair itself while you sleep.</span></p>
+      1. Use a makeup remover to remove all traces of makeup.
+      <br>
+      2. Wash your face with a gentle cleanser to remove dirt, oil, and sweat.
+      <br>
+      3. Apply a toner to remove any leftover impurities and prep your skin for the next steps.
+      <br>
+      4. Apply a serum to target specific concerns, such as wrinkles or uneven skin tone.
+      <br>
+      5. Apply a night cream to hydrate your skin and help it repair itself while you sleep.
+    </p>
   </div>
 
   <div class="images">
@@ -94,19 +104,9 @@
   </div>
 </div>
 
-<!-- Modal for editing -->
-<div id="editModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <textarea id="editTextArea" class="edit-textarea"></textarea>
-    <button onclick="saveChanges()">Save Changes</button>
-  </div>
-</div>
-
 <script>
   let currentImageIndex = 0;
   const images = document.querySelectorAll('.image');
-  let currentEditElement;
 
   function showNextImage() {
     images[currentImageIndex].style.display = 'none';
@@ -118,35 +118,6 @@
     images[currentImageIndex].style.display = 'none';
     currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
     images[currentImageIndex].style.display = 'block';
-  }
-
-  function editItem(event, element) {
-    event.preventDefault(); 
-    event.stopPropagation(); 
-    const textElement = element.nextElementSibling.querySelector('.routine-description'); // Get the routine description element
-    currentEditElement = textElement;
-    const text = textElement.textContent.trim(); // Get the text content and trim any extra spaces
-    const input = document.createElement('textarea'); // Create a textarea element
-    input.value = text; // Set the value of the textarea to the current text content
-    input.classList.add('edit-textarea'); // Add a class for styling
-    textElement.replaceWith(input); // Replace the text element with the textarea
-    input.focus(); // Focus on the textarea for immediate editing
-  }
-
-  function saveChanges() {
-    const newText = document.querySelector('.edit-textarea').value;
-    currentEditElement.textContent = newText;
-    closeModal();
-  }
-
-  function closeModal() {
-    const input = document.querySelector('.edit-textarea');
-    const textElement = document.createElement('span'); // Change to span element
-    textElement.classList.add('routine-description'); // Add class for consistency
-    textElement.textContent = input.value;
-    input.replaceWith(textElement);
-    const modal = document.getElementById('editModal');
-    modal.style.display = 'none';
   }
 </script>
 
